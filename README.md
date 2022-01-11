@@ -14,9 +14,9 @@ the 3-dimension version of the model, particle moves vertically.
 1. edit the parameter is para.py, the meaning are explained in the comment
 2. cd to the path where "start_tracking.py" is in, run:
 ~~~
-python ./start_tracking.py
+python ./start_tracking_3d.py
 ~~~
 if on linux platform:
 ~~~
-python3 ./start_tracking.py
+python3 ./start_tracking_3d.py
 ~~~
