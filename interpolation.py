@@ -27,6 +27,9 @@ def whichfile(time):
 lonlon = np.squeeze(np.reshape(lon_rho,[lon_rho.shape[0]*lon_rho.shape[1],1]))
 latlat = np.squeeze(np.reshape(lat_rho,[lat_rho.shape[0]*lat_rho.shape[1],1]))
 
+# lons = lon_0
+# lats = lat_0
+# time_ = release_time
 def IDW_V(lons,lats,time_):
     # 定位文件和时刻 读取
     filename,times = whichfile(time_)
@@ -96,10 +99,17 @@ def IDW_V(lons,lats,time_):
         d[2] = distance(x,y,x2,y2)
         d[3] = distance(x,y,x1,y2)
 
+        exit_flag = False
         for point in range(len(d)):  # 正巧卡在了整数编号的网格点上，手动处理分母为零的情况
             if abs(d[point]) < 1e-15:
-                return [1*u[point]*(360/(6371000*2*3.14159*math.cos(lat*(math.pi/180)))),1*v[point]*(360/(6371000*2*3.14159))]
-            
+                [uu[ii],vv[ii]] = [\
+                    1*u[point]*(360/(6371000*2*3.14159*math.cos(lat*(math.pi/180)))),\
+                        1*v[point]*(360/(6371000*2*3.14159))]
+                exit_flag = True
+                break
+        if exit_flag:
+            continue
+
         def func_d(distance_list):  # 每点的权重因子, 平方反比关系
             fd = np.zeros([4])
             for point in range(len(distance_list)):
@@ -175,7 +185,8 @@ def BATCH_BILINAER_V(lon,lat,time_):
     return [uu,vv]
 
 def ANA_V(lon,lat,time_):
-    
+    pass
+
 if h_interp_method == 'IDW':
     V = IDW_V
 elif h_interp_method == 'BATCH_LINEAR':

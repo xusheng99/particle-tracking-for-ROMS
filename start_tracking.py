@@ -1,6 +1,8 @@
 from para import *
 from interpolation import V
 from oceanmask_toolbox import inocean
+import warnings 
+warnings.filterwarnings('ignore')
 
 # RK4
 def gonext(position):
@@ -116,7 +118,7 @@ if __name__ == '__main__':
     T3 = time.perf_counter()
 
     print('TOTAL TIME CONSUME: {} seconds'.format(round(T3-T1),4))
-    print('WRITING OUTPUTFILE: {} seconds'.formta(round(T3-T2),4))
+    print('WRITING OUTPUTFILE: {} seconds'.format(round(T3-T2),4))
     # shutil.move('tracking_output.npy',workdir)
 
 
@@ -128,6 +130,13 @@ if __name__ == '__main__':
 
 
 '''
+
+for i in range(1000):
+    positions = gonext(positions)
+    print(i,'!!!!!')
+    positions[2] = positions_0[2]
+
+
 lonori = positions[0]
 latori = positions[1]
 

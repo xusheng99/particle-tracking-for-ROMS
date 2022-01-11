@@ -23,10 +23,8 @@ from scipy.interpolate.interpolate import interp1d
 ######################################  PARAS   ########################################
 
 # workdir = 'c:/Users/XUSHENG/Desktop/particle_tracking_results/fast/test/' # path that stores particle tracking results
-workdir = '/mnt/i/application/bh/0910test3/Christmas_new_nowind_TSfixed_nobryflow/'
-# workdir = 'i:/application/bh/0910test3/Christmas_new_nowind_TSfixed_nobryflow/'
+workdir = './test_data/'
 
-# workdir = './'
 os.chdir(workdir) # working directory
 
 ## project name, write whatever you want
@@ -35,8 +33,8 @@ projectname = 'for bohai community detection'
 ## specify revelant files
 # domain = 'i:/application/bh/0910test3/Christmas_new_nowind_TSfixed_nobryflow//Grd.nc' # ROMS Grid file name
 # datadir = 'i:/application/bh/0910test3/Christmas_new_nowind_TSfixed_nobryflow/' # 
-domain = '/mnt/i/application/bh/0910test3/Christmas_new_nowind_TSfixed_nobryflow//Grd.nc' # ROMS Grid file name
-datadir = '/mnt/i/application/bh/0910test3/Christmas_new_nowind_TSfixed_nobryflow/' # 
+domain = 'roms_grid.nc' # ROMS Grid file name
+datadir = './' # 
 
 ## restart?
 L_RST = False # if model restart from a restartfile, True / False
@@ -49,10 +47,10 @@ if his_or_qck == 'history':
 else:
     prefix = 'qck_' # the prefix of quicksave files;
 numdigits = 4 # the length of the numbers in a history or quicksave file; eg. 'his_0234.nc' -> numdigits = 4
-his_writestep = 24 # how many timesteps are there in a normal history or quicksave file? do remember the timestep numbers in the first outputfile contains the extra intital time step;
+his_writestep = 48 # how many timesteps are there in a normal history or quicksave file? do remember the timestep numbers in the first outputfile contains the extra intital time step;
                    # those infomations can be accessed by "ncdump -h qkc_0002.nc" on linux
 ndefhis = 86400 # how many seconds are there in a normal history or quicksave file? 
-DT = 3600 # the time gap of two timesteps in history or quicksave file, unit: seconds
+DT = 1800 # the time gap of two timesteps in history or quicksave file, unit: seconds
 
 
 ## integrate parameters
@@ -60,8 +58,8 @@ timearrow = 'forward' # time flow forwards or backwards
 # timearrow = 'backward'
 T_cycle = 0 # reset all particle's location every T_cycle time, if T_cycle equals 0, the reset behaviour is disabled.
 dt = 600  # integration time step, seconds
-release_time = 86400*30  # release time, seconds since roms initialization
-total_time = 86400*30 # total tracking time, seconds
+release_time = 86400*24 + 3600  # release time, seconds since roms initialization
+total_time = 86400*2 # total tracking time, seconds
 write_step = 6 # take a snapshot of all particles to a *.dat file for every write_step*dt seconds, 
 
 ## interpolation method: horizontal
@@ -93,11 +91,11 @@ Dh = 0.3 # horizontal diffusion coefficient
 
 
 ## particle release region control
-minX = 117 # min longitude
-maxX = 127 # max longitude
-minY = 35.5 # min latitude
-maxY = 41 # max latitude
-N_edge = 50 # linear density, how many particles on a one degree segment?
+minX = 118 # min longitude
+maxX = 126 # max longitude
+minY = 36 # min latitude
+maxY = 40 # max latitude
+N_edge = 5 # linear density, how many particles on a one degree segment?
 
 
 
