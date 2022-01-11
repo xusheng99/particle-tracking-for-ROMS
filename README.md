@@ -2,12 +2,13 @@
 particle tracking model, works with the ROMS output file(qck.nc, his.nc)
 
 ## description
-this is a 2-dimensional particle tracking model based on ROMS output files, including his.nc, qck.nc.
+the 3-dimension version of the model, particle moves vertically.
 
 ## features and numerical schemes
 * 4th order RK method is applied to the particle movement progress.
 * support time backward tracking.
 * diffusion is implemented by random walk algorithm.
+
 
 ## usage
 1. edit the parameter is para.py, the meaning are explained in the comment
